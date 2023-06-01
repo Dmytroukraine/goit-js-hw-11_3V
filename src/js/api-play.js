@@ -1,11 +1,11 @@
 const axios = require('axios').default;
 
-const API_KEY = '36867238-d18d023007d9afe06dc91b3fb';
+const API_KEY = '36838905-81afad8944bf6a504726c2c1c';
 const BASE_URL = 'https://pixabay.com/api/';
 
 export default class ImagesApiService {
   constructor() {
-      this.searchQuery = '';
+      this.searchQuery = ''; 
     this.page = 1;
     this.currentHits = 0;
   }

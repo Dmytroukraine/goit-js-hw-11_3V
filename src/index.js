@@ -1,4 +1,4 @@
-import ImagesApiService from './js/api-pixabay';
+import ImagesApiService from './js/api-play';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 import Notiflix from 'notiflix';
@@ -6,7 +6,6 @@ import Notiflix from 'notiflix';
 const refs = {
   searchForm: document.querySelector('.search-form'),
   imagesContainer: document.querySelector('.gallery'),
-  // loadMoreBtn: document.querySelector('.load-more'),
   target: document.querySelector('.js-guard'),
   theEnd: document.querySelector('.end'),
 };
@@ -14,8 +13,6 @@ const refs = {
 const imagesApiService = new ImagesApiService();
 
 refs.searchForm.addEventListener('submit', onFormSubmit);
-// refs.loadMoreBtn.addEventListener('click', onLoadMoreClick);
-
 function onFormSubmit(e) {
   e.preventDefault();
 
@@ -38,14 +35,6 @@ const gallery = new SimpleLightbox('.gallery a', {
   captionDelay: 150,
   loop: false,
 });
-
-// function onLoadMoreClick(e) {
-//   imagesApiService.getImages().then(images => {
-//     appendImagesMarkup(images);
-//     gallery.refresh();
-//   });
-// }
-
 function appendImagesMarkup(images) {
   const imageMarkup = images.hits
     .map(
