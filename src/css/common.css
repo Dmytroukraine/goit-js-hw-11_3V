@@ -6,6 +6,7 @@
 	animation: gradient 10s ease infinite;
 	    box-shadow: 10px 5px 10px -5px rgba(0, 0, 0, 0.95);
         background-size: 400%;
+     
 }
 
 .is-hidden {
@@ -52,8 +53,11 @@ img {
 }
 
 .gallery__image:hover {
-  transform: scale(1.03);
+  transform: scale(2.03);
+  transition: 0.7s ease-in-out;
+  
 }
+
 
 .gallery__image {
   display: block;
