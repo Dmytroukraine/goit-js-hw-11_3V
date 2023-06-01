@@ -1,11 +1,10 @@
 :root {
   --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   --animation-duration: 250ms;
-  background: linear-gradient(-45deg, #bcbcbe, #000000, #b3afb1, #000000);
+  background: linear-gradient(-90deg, #bcbcbe, #000000, #b3afb1, #000000);
 	/* background-size: 400% 400%; */
 	animation: gradient 10s ease infinite;
-	    box-shadow: 10px 5px 10px -5px rgba(0, 0, 0, 0.95);
-        background-size: 400%;
+	background-size: 400%;
      
 }
 
