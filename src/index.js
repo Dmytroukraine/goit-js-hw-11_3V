@@ -12,6 +12,9 @@ const refs = {
 
 const imagesApiService = new ImagesApiService();
 
+
+
+
 refs.searchForm.addEventListener('submit', onFormSubmit);
 function onFormSubmit(e) {
   e.preventDefault();
@@ -28,6 +31,34 @@ function onFormSubmit(e) {
     gallery.refresh()
   });
 }
+
+
+refs.searchForm.addEventListener('submit', onFormSubmit);
+
+function onFormSubmit(e) {
+  e.preventDefault();
+
+  const searchQuery = e.currentTarget.elements.searchQuery.value;
+  if (searchQuery.trim() === '') {
+    return; // Вихід з функції, якщо інпут порожній або містить тільки пробіли
+  }
+
+  imagesApiService.query = searchQuery;
+  imagesApiService.resetPage();
+  imagesApiService.getImages().then(images => {
+    clearImagesContainer();
+    appendImagesMarkup(images);
+    observer.observe(refs.target);
+    if (images.totalHits === 0) {
+      Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.");
+    }
+    gallery.refresh();
+  });
+}
+
+
+
+
 
 const gallery = new SimpleLightbox('.gallery a', {
   captions: true,

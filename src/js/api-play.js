@@ -10,6 +10,7 @@ export default class ImagesApiService {
     this.currentHits = 0;
   }
 
+ 
   getImages() {
     return axios
       .get(
