@@ -6,16 +6,16 @@ import Notiflix from 'notiflix';
 const refs = {
   searchForm: document.querySelector('.search-form'),
   imagesContainer: document.querySelector('.gallery'),
+  // loadMoreBtn: document.querySelector('.load-more'),
   target: document.querySelector('.js-guard'),
   theEnd: document.querySelector('.end'),
 };
 
 const imagesApiService = new ImagesApiService();
 
-
-
-
 refs.searchForm.addEventListener('submit', onFormSubmit);
+// refs.loadMoreBtn.addEventListener('click', onLoadMoreClick);
+
 function onFormSubmit(e) {
   e.preventDefault();
 
@@ -32,40 +32,20 @@ function onFormSubmit(e) {
   });
 }
 
-
-refs.searchForm.addEventListener('submit', onFormSubmit);
-
-function onFormSubmit(e) {
-  e.preventDefault();
-
-  const searchQuery = e.currentTarget.elements.searchQuery.value;
-  if (searchQuery.trim() === '') {
-    return; // Вихід з функції, якщо інпут порожній або містить тільки пробіли
-  }
-
-  imagesApiService.query = searchQuery;
-  imagesApiService.resetPage();
-  imagesApiService.getImages().then(images => {
-    clearImagesContainer();
-    appendImagesMarkup(images);
-    observer.observe(refs.target);
-    if (images.totalHits === 0) {
-      Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.");
-    }
-    gallery.refresh();
-  });
-}
-
-
-
-
-
 const gallery = new SimpleLightbox('.gallery a', {
   captions: true,
   captionsData: 'alt',
   captionDelay: 150,
   loop: false,
 });
+
+// function onLoadMoreClick(e) {
+//   imagesApiService.getImages().then(images => {
+//     appendImagesMarkup(images);
+//     gallery.refresh();
+//   });
+// }
+
 function appendImagesMarkup(images) {
   const imageMarkup = images.hits
     .map(
@@ -131,3 +111,4 @@ function onLoad(entries, observer) {
     }
   });
 }
+
